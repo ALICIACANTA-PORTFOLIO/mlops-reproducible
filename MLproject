@@ -1,0 +1,34 @@
+name: mlops-reproducible
+
+python_env: conda.yaml
+
+entry_points:
+  main:
+    command: "dvc repro"
+    
+  preprocess:
+    parameters:
+      inp: {type: str, default: "data/raw/ObesityDataSet_raw_and_data_sinthetic.csv"}
+      out: {type: str, default: "data/interim/obesity_clean.csv"}
+      params: {type: str, default: "params.yaml"}
+    command: "python src/data/preprocess.py --inp {inp} --out {out} --params {params} --report reports/data_quality_report.json"
+    
+  features:
+    parameters:
+      inp: {type: str, default: "data/interim/obesity_clean.csv"}
+      out: {type: str, default: "data/processed/features.csv"}
+      params: {type: str, default: "params.yaml"}
+    command: "python src/data/make_features.py --inp {inp} --out {out} --params {params}"
+    
+  train:
+    parameters:
+      data: {type: str, default: "data/processed/features.csv"}
+      params: {type: str, default: "params.yaml"}
+      model_dir: {type: str, default: "models"}
+    command: "python src/models/train.py --data {data} --params {params} --model_dir {model_dir} --metrics reports/metrics.json --fig_cm reports/figures/confusion_matrix.png"
+    
+  evaluate:
+    parameters:
+      data: {type: str, default: "data/processed/features.csv"}
+      model_path: {type: str, default: "models/mlflow_model"}
+    command: "python src/models/evaluate.py --data {data} --model_path {model_path} --eval_json reports/eval_metrics.json --fig_cm reports/figures/confusion_matrix_eval.png --fig_fi reports/figures/feature_importance.png"

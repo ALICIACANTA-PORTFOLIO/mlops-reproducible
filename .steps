@@ -1,0 +1,13 @@
+5. Inicializar/ajustar DVC y datos
+
+Tu repo ya tiene DVC en uso (.dvc/ y data.dvc)
+GitHub
+. Continúa así:
+
+dvc init # si aún no está inicializado en local
+
+# Versiona el dataset "raw" (si no está en data.dvc):
+
+dvc add data/raw/ObesityDataSet_raw_and_data_sinthetic.csv
+git add data/raw/ObesityDataSet_raw_and_data_sinthetic.csv.dvc .gitignore
+git commit -m "Track raw dataset with DVC"

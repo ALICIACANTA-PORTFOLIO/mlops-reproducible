@@ -1,0 +1,125 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/data/preprocess.py --inp 
+      data/raw/ObesityDataSet_raw_and_data_sinthetic.csv --out 
+      data/interim/obesity_clean.csv --params params.yaml --report 
+      reports/data_quality_report.json
+    deps:
+    - path: data/raw/ObesityDataSet_raw_and_data_sinthetic.csv
+      hash: md5
+      md5: aff636fcccdf0a24ed7186e48bad2548
+      size: 263646
+    - path: params.yaml
+      hash: md5
+      md5: a740e1f3339dd9b873f4fbc54aae34da
+      size: 1524
+    - path: src/data/preprocess.py
+      hash: md5
+      md5: 2eee868eca924342f088cf0879f1ce57
+      size: 10332
+    outs:
+    - path: data/interim/obesity_clean.csv
+      hash: md5
+      md5: fbd022836b61b7f7f0881af27e7be875
+      size: 274688
+    - path: reports/data_quality_report.json
+      hash: md5
+      md5: 540875b1ae8d3a6c55d04fc571f6995f
+      size: 1039
+  features:
+    cmd: python src/data/make_features.py --inp data/interim/obesity_clean.csv 
+      --out data/processed/features.csv --params params.yaml
+    deps:
+    - path: data/interim/obesity_clean.csv
+      hash: md5
+      md5: fbd022836b61b7f7f0881af27e7be875
+      size: 274688
+    - path: params.yaml
+      hash: md5
+      md5: a740e1f3339dd9b873f4fbc54aae34da
+      size: 1524
+    - path: src/data/make_features.py
+      hash: md5
+      md5: df6fb877692983a8af77abe5ab6a43a6
+      size: 9732
+    outs:
+    - path: data/processed/features.csv
+      hash: md5
+      md5: 7be66dc53afd5e2127ff5363e6ed4011
+      size: 527214
+    - path: models/features/encoder.joblib
+      hash: md5
+      md5: a63de99e02bc986c69d8f347e72b63fa
+      size: 3166
+    - path: models/features/features_meta.json
+      hash: md5
+      md5: bf3d7df1ffa047873d9cd65db7af1538
+      size: 2253
+    - path: models/features/scaler.joblib
+      hash: md5
+      md5: b279c3d9edff46cb7feb341053e7814a
+      size: 1191
+  train:
+    cmd: python src/models/train.py --data data/processed/features.csv --params 
+      params.yaml --model_dir models --metrics reports/metrics.json --fig_cm 
+      reports/figures/confusion_matrix.png
+    deps:
+    - path: data/processed/features.csv
+      hash: md5
+      md5: 7be66dc53afd5e2127ff5363e6ed4011
+      size: 527214
+    - path: params.yaml
+      hash: md5
+      md5: a740e1f3339dd9b873f4fbc54aae34da
+      size: 1524
+    - path: src/models/train.py
+      hash: md5
+      md5: 988d6b3610f3b8617edf2cbc58a828ef
+      size: 5042
+    outs:
+    - path: models/mlflow_model
+      hash: md5
+      md5: ff3ac3be72993f1f6666e51993539e98.dir
+      size: 20374752
+      nfiles: 5
+    - path: reports/figures/confusion_matrix.png
+      hash: md5
+      md5: fa1c8de7cdf637c7e7ff0972630074b3
+      size: 45956
+    - path: reports/metrics.json
+      hash: md5
+      md5: 86376ed7e1663a30ddc352ce089c7f65
+      size: 1633
+  evaluate:
+    cmd: python src/models/evaluate.py --data data/processed/features.csv 
+      --model_path models/mlflow_model --eval_json reports/eval_metrics.json 
+      --fig_cm reports/figures/confusion_matrix_eval.png --fig_fi 
+      reports/figures/feature_importance.png
+    deps:
+    - path: data/processed/features.csv
+      hash: md5
+      md5: 7be66dc53afd5e2127ff5363e6ed4011
+      size: 527214
+    - path: models/mlflow_model
+      hash: md5
+      md5: ff3ac3be72993f1f6666e51993539e98.dir
+      size: 20374752
+      nfiles: 5
+    - path: src/models/evaluate.py
+      hash: md5
+      md5: a10e5f92ae96f7de91039a7bdd9a22e5
+      size: 4767
+    outs:
+    - path: reports/eval_metrics.json
+      hash: md5
+      md5: ad0eda0bb4c907b95c4070ff90f46bdd
+      size: 1535
+    - path: reports/figures/confusion_matrix_eval.png
+      hash: md5
+      md5: 191849f9789083f3c6b25d86e75295b6
+      size: 50965
+    - path: reports/figures/feature_importance.png
+      hash: md5
+      md5: 8eb5e1874d0b2c5b3ae3d19cb1f7d834
+      size: 5310

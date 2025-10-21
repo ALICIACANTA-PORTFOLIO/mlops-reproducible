@@ -1,0 +1,40 @@
+# MLflow y seguimiento de experimentos
+mlflow==2.8.1
+
+# Control de versiones de datos y pipelines
+dvc==3.30.0
+dvc[s3]==3.30.0
+
+# Data Science y Machine Learning
+pandas==2.0.3
+numpy==1.24.4
+scikit-learn==1.3.2
+
+# Visualización
+matplotlib==3.7.4
+seaborn==0.12.2
+plotly==5.17.0
+
+# Configuración y serialización
+pyyaml==6.0.1
+joblib==1.3.2
+
+# API y despliegue
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.5.0
+
+# Testing y desarrollo
+pytest==7.4.3
+pytest-cov==4.1.0
+black==23.11.0
+flake8==6.1.0
+
+# Jupyter y notebooks
+jupyter==1.0.0
+ipykernel==6.26.0
+
+# Utilidades adicionales
+click==8.1.7
+python-dotenv==1.0.0
+requests==2.31.0

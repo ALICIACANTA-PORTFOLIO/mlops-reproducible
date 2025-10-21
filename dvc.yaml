@@ -1,0 +1,45 @@
+stages:
+  preprocess:
+    cmd: python src/data/preprocess.py --inp ${data.raw} --out ${data.interim} --params params.yaml --report reports/data_quality_report.json
+    deps:
+      - src/data/preprocess.py
+      - ${data.raw}
+      - params.yaml
+    outs:
+      - ${data.interim}
+    metrics:
+      - reports/data_quality_report.json
+
+  features:
+    cmd: python src/data/make_features.py --inp ${data.interim} --out ${data.processed} --params params.yaml
+    deps:
+      - src/data/make_features.py
+      - ${data.interim}
+      - params.yaml
+    outs:
+      - ${data.processed}
+      - models/features/encoder.joblib
+      - models/features/scaler.joblib
+      - models/features/features_meta.json
+
+  train:
+    cmd: python src/models/train.py --data ${data.processed} --params params.yaml --model_dir models --metrics reports/metrics.json --fig_cm reports/figures/confusion_matrix.png
+    deps:
+      - src/models/train.py
+      - ${data.processed}
+      - params.yaml
+    outs:
+      - models/mlflow_model
+      - reports/metrics.json
+      - reports/figures/confusion_matrix.png
+
+  evaluate:
+    cmd: python src/models/evaluate.py --data ${data.processed} --model_path models/mlflow_model --eval_json reports/eval_metrics.json --fig_cm reports/figures/confusion_matrix_eval.png --fig_fi reports/figures/feature_importance.png
+    deps:
+      - src/models/evaluate.py
+      - ${data.processed}
+      - models/mlflow_model
+    outs:
+      - reports/eval_metrics.json
+      - reports/figures/confusion_matrix_eval.png
+      - reports/figures/feature_importance.png
