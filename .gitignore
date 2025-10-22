@@ -137,3 +137,10 @@ Thumbs.db
 
 /docs/referencias
 /docs/1.4_books
+# Legacy/Deprecated
+gradio_app*.py
+*gradio*.py
+demo.py
+diagnose_*.py
+ejecutar.bat
+ejecutar.ps1

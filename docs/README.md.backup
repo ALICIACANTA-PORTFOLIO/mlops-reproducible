@@ -1,5 +1,18 @@
 # Documentación del Proyecto MLOps
 
+## 📚 Índice de Documentación
+
+### 🚀 **Documentación Principal**
+
+- **[README.md](../README.md)** - Guía principal del proyecto
+- **[GRADIO_INTERFACE.md](GRADIO_INTERFACE.md)** - **🎨 Interfaz web amigable con Gradio**
+- **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)** - **🚀 API REST con FastAPI**
+- **[MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md)** - **⭐ Guía completa de integración MLOps**
+  - Explicación detallada de DVC + MLflow + CI/CD
+  - Ejemplos prácticos paso a paso
+  - Casos de uso comunes
+  - Comandos y configuración
+
 ### 🏗️ **Documentación Técnica**
 
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** - Arquitectura del sistema
