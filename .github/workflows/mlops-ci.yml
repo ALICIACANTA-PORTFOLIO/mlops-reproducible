@@ -1,0 +1,94 @@
+# CI/CD Pipeline para MLOps
+name: MLOps Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-and-train:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 1. Checkout del código
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Para DVC
+    
+    # 2. Setup Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    # 3. Cache de dependencias
+    - name: Cache pip packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+    
+    # 4. Instalar dependencias
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+    
+    # 5. Linting y tests
+    - name: Lint with flake8
+      run: |
+        flake8 src/ mlops/ --count --select=E9,F63,F7,F82 --show-source --statistics
+    
+    - name: Test with pytest
+      run: |
+        pytest tests/ -v --cov=src --cov=mlops --cov-report=xml
+    
+    # 6. Setup DVC (si tienes datos remotos)
+    - name: Setup DVC
+      run: |
+        pip install dvc[s3]  # o [gcs], [azure], etc.
+        # dvc remote modify myremote access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+        # dvc pull  # Solo si tienes datos remotos
+    
+    # 7. Ejecutar pipeline DVC
+    - name: Run DVC pipeline
+      run: |
+        dvc repro
+    
+    # 8. Validar resultados
+    - name: Validate model performance
+      run: |
+        python -c "
+        import json
+        with open('reports/eval_metrics.json', 'r') as f:
+            metrics = json.load(f)
+        accuracy = metrics.get('accuracy', 0)
+        assert accuracy > 0.80, f'Model accuracy {accuracy} below threshold'
+        print(f'✅ Model accuracy: {accuracy}')
+        "
+    
+    # 9. Upload artifacts
+    - name: Upload model artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: model-artifacts
+        path: |
+          models/
+          reports/
+        retention-days: 30
+
+  # Job adicional para deployment (solo en main)
+  deploy:
+    needs: test-and-train
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Deploy model
+      run: |
+        echo "🚀 Deploying model to production..."
+        # Aquí irían los comandos de deployment
+        # docker build, kubectl apply, etc.

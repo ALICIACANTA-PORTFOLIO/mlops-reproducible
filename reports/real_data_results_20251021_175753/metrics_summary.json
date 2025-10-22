@@ -1,0 +1,38 @@
+{
+  "timestamp": "20251021_175753",
+  "dataset_info": {
+    "path": "data/interim/obesity_clean.csv",
+    "total_samples": 2087,
+    "features": 16,
+    "classes": 7,
+    "class_names": [
+      "Insufficient_Weight",
+      "Normal_Weight",
+      "Obesity_Type_I",
+      "Obesity_Type_II",
+      "Obesity_Type_III",
+      "Overweight_Level_I",
+      "Overweight_Level_II"
+    ]
+  },
+  "model_info": {
+    "best_model": "RandomForest",
+    "tuning_results": {
+      "best_model_name": "RandomForest",
+      "best_params": {
+        "max_depth": 20,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2,
+        "min_samples_split": 5,
+        "n_estimators": 300
+      },
+      "cv_score": 0.9453858658937138,
+      "val_accuracy": 0.9593301435406698,
+      "val_f1_macro": 0.9576901765706918
+    }
+  },
+  "performance": {
+    "test_accuracy": 0.9521531100478469,
+    "test_f1_macro": 0.9506333099102634
+  }
+}

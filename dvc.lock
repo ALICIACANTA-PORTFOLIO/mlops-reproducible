@@ -12,8 +12,8 @@ stages:
       size: 263646
     - path: params.yaml
       hash: md5
-      md5: a740e1f3339dd9b873f4fbc54aae34da
-      size: 1524
+      md5: 79d5e000042cdafef6dac7754a01e988
+      size: 1528
     - path: src/data/preprocess.py
       hash: md5
       md5: 2eee868eca924342f088cf0879f1ce57
@@ -37,8 +37,8 @@ stages:
       size: 274688
     - path: params.yaml
       hash: md5
-      md5: a740e1f3339dd9b873f4fbc54aae34da
-      size: 1524
+      md5: 79d5e000042cdafef6dac7754a01e988
+      size: 1528
     - path: src/data/make_features.py
       hash: md5
       md5: df6fb877692983a8af77abe5ab6a43a6
@@ -71,26 +71,26 @@ stages:
       size: 527214
     - path: params.yaml
       hash: md5
-      md5: a740e1f3339dd9b873f4fbc54aae34da
-      size: 1524
+      md5: 79d5e000042cdafef6dac7754a01e988
+      size: 1528
     - path: src/models/train.py
       hash: md5
-      md5: 988d6b3610f3b8617edf2cbc58a828ef
-      size: 5042
+      md5: e1a6fbf05792c3c1bbf6d04f028923c2
+      size: 5696
     outs:
     - path: models/mlflow_model
       hash: md5
-      md5: ff3ac3be72993f1f6666e51993539e98.dir
-      size: 20374752
+      md5: 6857ff7ce513dac220616baf83ac2eda.dir
+      size: 16035239
       nfiles: 5
     - path: reports/figures/confusion_matrix.png
       hash: md5
-      md5: fa1c8de7cdf637c7e7ff0972630074b3
-      size: 45956
+      md5: af80f17e2f48b466b723f49d614ecd20
+      size: 46137
     - path: reports/metrics.json
       hash: md5
-      md5: 86376ed7e1663a30ddc352ce089c7f65
-      size: 1633
+      md5: b2e0289b47bda23ac53e867e3b2bf9d5
+      size: 1635
   evaluate:
     cmd: python src/models/evaluate.py --data data/processed/features.csv 
       --model_path models/mlflow_model --eval_json reports/eval_metrics.json 
@@ -103,8 +103,8 @@ stages:
       size: 527214
     - path: models/mlflow_model
       hash: md5
-      md5: ff3ac3be72993f1f6666e51993539e98.dir
-      size: 20374752
+      md5: 6857ff7ce513dac220616baf83ac2eda.dir
+      size: 16035239
       nfiles: 5
     - path: src/models/evaluate.py
       hash: md5
@@ -113,12 +113,12 @@ stages:
     outs:
     - path: reports/eval_metrics.json
       hash: md5
-      md5: ad0eda0bb4c907b95c4070ff90f46bdd
-      size: 1535
+      md5: 1863dbd8facccb60a0a983a28f83a169
+      size: 1539
     - path: reports/figures/confusion_matrix_eval.png
       hash: md5
-      md5: 191849f9789083f3c6b25d86e75295b6
-      size: 50965
+      md5: 2bc1da992f6d9200d237e3e9595e7fd2
+      size: 51771
     - path: reports/figures/feature_importance.png
       hash: md5
       md5: 8eb5e1874d0b2c5b3ae3d19cb1f7d834

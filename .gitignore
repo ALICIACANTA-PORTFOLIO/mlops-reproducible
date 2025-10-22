@@ -107,6 +107,7 @@ mlartifacts/
 /models/*.pkl
 /models/*.joblib
 /models/mlflow_model/
+/models/features/
 
 # Data (managed by DVC)
 # Keep .dvc files but ignore actual data
@@ -133,3 +134,5 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+/docs/referencias

@@ -38,14 +38,23 @@ features:
   save_artifacts: true
   artifacts_dir: models/features
 
+# Configuración del split
+split:
+  test_size: 0.3
+  random_state: 52
+
 # Configuración del modelo
 model:
   type: random_forest     # random_forest | logistic_regression
   n_estimators: 300
-  max_depth: null
+  max_depth: 12 #null
   class_weight: balanced
 
-# Configuración del split
-split:
-  test_size: 0.2
-  random_state: 52
+# Configuración de MLflow
+mlflow:
+  experiment_name: obesity_classification_v2
+  tracking_uri: ./mlruns  # o puede ser una URI remota
+  model_name: obesity_classifier
+  tags:
+    project: mlops-reproducible
+    team: data-science

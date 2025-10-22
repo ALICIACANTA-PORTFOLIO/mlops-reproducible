@@ -1,0 +1,102 @@
+# =============================================================================
+# CONFIGURACIÓN PROFESIONAL DE EXPERIMENTOS MLFLOW
+# =============================================================================
+
+# 📊 Estándares de Experimentos para Producción
+experiment_standards:
+  
+  # 🎯 Naming Conventions
+  naming:
+    experiments: "{project}-{model_family}"  # obesity-classification-randomforest
+    runs: "{model_type}-e{n_estimators}-d{max_depth}-{timestamp}-acc{accuracy}"
+    models: "{project}-{model_type}-v{version}"  # obesity-classifier-randomforest-v1
+    
+  # 🏷️ Tags Obligatorios
+  mandatory_tags:
+    - experiment_type      # model_training, hyperparameter_tuning, feature_engineering
+    - model_architecture   # random_forest, xgboost, neural_network
+    - problem_type         # classification, regression, clustering
+    - environment          # development, staging, production
+    - git_commit           # Hash del commit para trazabilidad
+    - owner                # Responsable del experimento
+    - purpose              # Propósito específico del experimento
+    - production_ready     # true/false - ¿Listo para producción?
+    
+  # 📈 Métricas Requeridas
+  required_metrics:
+    classification:
+      primary: [accuracy, f1_macro, precision_macro, recall_macro]
+      secondary: [training_duration_seconds, n_features_used]
+      per_class: [precision, recall, f1_score, support]
+      
+  # 🎚️ Umbrales de Calidad
+  quality_thresholds:
+    accuracy_min: 0.85          # Mínimo para considerar producción
+    f1_macro_min: 0.80          # Mínimo F1 para clases balanceadas
+    training_time_max: 300      # Máximo tiempo de entrenamiento (segundos)
+    
+  # 📦 Artefactos Estándar
+  standard_artifacts:
+    - confusion_matrix.png      # Matriz de confusión
+    - feature_importance.png    # Importancia de features (si aplica)
+    - classification_report.json # Reporte detallado
+    - model_metadata.json       # Metadatos del modelo
+    - training_log.txt          # Log de entrenamiento
+    
+# 🔄 Flujo de Promoción de Modelos
+model_promotion_pipeline:
+  
+  development:
+    - validation: "accuracy > 0.85 AND f1_macro > 0.80"
+    - next_stage: "staging"
+    
+  staging:
+    - validation: "accuracy > 0.90 AND training_time < 300"  
+    - approval: "manual_review_required"
+    - next_stage: "production"
+    
+  production:
+    - monitoring: "performance_drift_detection"
+    - rollback: "accuracy < 0.88"
+    - retention: "keep_last_3_versions"
+
+# 👥 Responsabilidades por Rol
+team_responsibilities:
+  
+  data_scientist:
+    - Experimentación con algoritmos
+    - Tuning de hiperparámetros  
+    - Análisis de features
+    - Documentación de resultados
+    
+  ml_engineer:
+    - Pipeline de entrenamiento
+    - Validación de modelos
+    - Preparación para producción
+    - Monitoreo de performance
+    
+  devops_engineer:
+    - Infraestructura MLflow
+    - CI/CD pipeline
+    - Deployment automatizado
+    - Backup y recovery
+
+# 📋 Checklist Pre-Producción
+production_checklist:
+  model_quality:
+    - "✅ Accuracy > 90%"
+    - "✅ F1-score balanceado por clase"  
+    - "✅ Sin overfitting (train/val gap < 5%)"
+    - "✅ Estabilidad en diferentes datasets"
+    
+  technical_requirements:
+    - "✅ Signature del modelo definida"
+    - "✅ Input/output examples incluidos"
+    - "✅ Dependencias documentadas"
+    - "✅ Tiempo de inferencia < 100ms"
+    
+  governance:
+    - "✅ Código revisado por par"
+    - "✅ Aprobación de stakeholder"
+    - "✅ Documentación completa" 
+    - "✅ Plan de rollback definido"
