@@ -5,6 +5,8 @@
 ### 🚀 **Documentación Principal**
 
 - **[README.md](../README.md)** - Guía principal del proyecto
+- **[GRADIO_INTERFACE.md](GRADIO_INTERFACE.md)** - **🎨 Interfaz web amigable con Gradio**
+- **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)** - **🚀 API REST con FastAPI**
 - **[MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md)** - **⭐ Guía completa de integración MLOps**
   - Explicación detallada de DVC + MLflow + CI/CD
   - Ejemplos prácticos paso a paso
@@ -33,6 +35,12 @@
 - **[1.3_Modeling_pipeline/](1.3_Modeling_pipeline/)** - Pipeline de modelado
 - **[referencias/MLOps/](referencias/MLOps/)** - Referencias externas
 
+### 📚 **Biblioteca de Recursos MLOps**
+
+- **[1.4_books/](1.4_books/)** - Libros especializados en MLOps
+  - **Machine Learning Engineering with MLflow.pdf** - Guía completa de MLflow para ingeniería ML
+  - **Machine Learning Design Patterns.pdf** - Patrones de diseño para sistemas ML escalables
+
 ---
 
 ## 🎯 **Guía de Navegación Recomendada**
@@ -41,15 +49,17 @@
 
 1. Leer **[README.md](../README.md)** (overview general)
 2. Estudiar **[MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md)** (conceptos y integración)
-3. Revisar **[1.1_Introduction/Initial_Setup.md](1.1_Introduction/Initial_Setup.md)** (setup)
-4. Explorar **[TECHNICAL_GUIDE.md](TECHNICAL_GUIDE.md)** (detalles técnicos)
+3. Consultar **[1.4_books/README.md](1.4_books/README.md)** (recursos especializados)
+4. Revisar **[1.1_Introduction/Initial_Setup.md](1.1_Introduction/Initial_Setup.md)** (setup)
+5. Explorar **[TECHNICAL_GUIDE.md](TECHNICAL_GUIDE.md)** (detalles técnicos)
 
 ### Para **Desarrolladores Experimentados**:
 
 1. **[ARCHITECTURE.md](ARCHITECTURE.md)** (arquitectura del sistema)
 2. **[MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md)** (integración avanzada)
-3. **[DEPLOYMENT.md](DEPLOYMENT.md)** (despliegue)
-4. **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** (solución de problemas)
+3. **[1.4_books/README.md](1.4_books/README.md)** (patrones avanzados y MLflow engineering)
+4. **[DEPLOYMENT.md](DEPLOYMENT.md)** (despliegue)
+5. **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** (solución de problemas)
 
 ### Para **Entender MLOps en la Práctica**:
 
@@ -76,6 +86,8 @@
 | **Comandos prácticos**         | [MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md) | Comandos Prácticos             |
 | **Troubleshooting**            | [TROUBLESHOOTING.md](TROUBLESHOOTING.md)     | Todo el documento              |
 | **Deployment**                 | [DEPLOYMENT.md](DEPLOYMENT.md)               | Todo el documento              |
+| **Recursos MLflow avanzados**  | [1.4_books/README.md](1.4_books/README.md)   | MLflow Engineering Book        |
+| **Patrones de diseño ML**      | [1.4_books/README.md](1.4_books/README.md)   | ML Design Patterns Book        |
 
 ---
 

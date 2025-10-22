@@ -259,11 +259,102 @@ mlflow:
 
 ## 📚 Documentación Adicional
 
+- [`docs/GRADIO_INTERFACE.md`](docs/GRADIO_INTERFACE.md) - **🎨 Interfaz web amigable (Gradio UI)**
+- [`docs/API_DOCUMENTATION.md`](docs/API_DOCUMENTATION.md) - **🚀 API REST para servir el modelo (FastAPI)**
 - [`docs/MLOPS_INTEGRATION.md`](docs/MLOPS_INTEGRATION.md) - **Guía completa de integración MLOps (DVC + MLflow + CI/CD)**
 - [`docs/TECHNICAL_GUIDE.md`](docs/TECHNICAL_GUIDE.md) - Guía técnica detallada
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) - Arquitectura del sistema
 - [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) - Guía de despliegue
 - [`notebooks/EDA.ipynb`](notebooks/EDA.ipynb) - Análisis exploratorio
+
+## 🚀 **API REST - Servir el Modelo**
+
+### **Inicio Rápido de la API:**
+
+```bash
+# 1. Entrenar el modelo (si no está entrenado)
+python run_mlops.py cli pipeline
+
+# 2. Iniciar la API
+python start_api.py --reload
+
+# 3. Probar la API
+python test_api.py
+```
+
+### **Endpoints Principales:**
+
+- **GET** `/health` - Health check de la API
+- **POST** `/predict` - Predicción individual
+- **POST** `/predict/batch` - Predicciones en lote
+- **GET** `/model/info` - Información del modelo
+- **GET** `/docs` - Documentación interactiva (Swagger)
+
+### **Ejemplo de Uso:**
+
+```python
+import requests
+
+# Datos de ejemplo
+data = {
+    "Age": 28, "Height": 1.75, "Weight": 85,
+    "Gender": "Male", "FAVC": "yes",
+    # ... resto de campos
+}
+
+# Predicción
+response = requests.post("http://127.0.0.1:8000/predict", json=data)
+result = response.json()
+
+print(f"Predicción: {result['prediction']}")
+print(f"Confianza: {result['confidence']:.3f}")
+print(f"Nivel de riesgo: {result['risk_level']}")
+```
+
+**📋 Documentación completa**: [`docs/API_DOCUMENTATION.md`](docs/API_DOCUMENTATION.md)
+
+## 🎨 **Interfaz Web Gradio - UI Amigable**
+
+### **Interfaz Visual para Usuarios Finales:**
+
+```bash
+# 1. Instalar dependencias (si no están)
+pip install gradio plotly
+
+# 2. Entrenar el modelo (si no está entrenado)
+python run_mlops.py cli pipeline
+
+# 3. Iniciar interfaz Gradio
+python start_gradio.py
+
+# 4. Abrir en navegador
+# http://127.0.0.1:7860
+```
+
+### **🌟 Características de la Interfaz:**
+
+- **🎯 Formulario interactivo** - Sliders, dropdowns, radio buttons
+- **📊 Visualizaciones en tiempo real** - Gráficos Plotly interactivos
+- **💡 Recomendaciones personalizadas** - Consejos específicos por resultado
+- **🔬 Casos de ejemplo** - Datos predefinidos para prueba rápida
+- **📱 Diseño responsivo** - Se adapta a móviles y tablets
+- **🎨 Interfaz profesional** - Tema personalizado y atractivo
+
+### **🎮 Ejemplo de Uso Gradio:**
+
+1. **📝 Llenar formulario** - Edad, peso, altura, hábitos
+2. **🎯 Hacer clic** en "Analizar mi Estado de Salud"
+3. **📊 Ver resultados** - Clasificación + confianza + gráficos
+4. **💡 Leer consejos** - Recomendaciones personalizadas
+
+### **🎯 Comparación: FastAPI vs Gradio**
+
+| Interfaz    | Audiencia        | Formato   | Uso Principal        |
+| ----------- | ---------------- | --------- | -------------------- |
+| **FastAPI** | Desarrolladores  | JSON/REST | Integración con apps |
+| **Gradio**  | Usuarios finales | Web UI    | Demos y prototipos   |
+
+**📋 Documentación completa**: [`docs/GRADIO_INTERFACE.md`](docs/GRADIO_INTERFACE.md)
 
 ## 🧪 Pruebas
 
@@ -273,6 +364,9 @@ python -m pytest tests/ -v
 
 # Pruebas específicas
 python -m pytest tests/test_data_validation.py -v
+
+# Probar API (si está corriendo)
+python test_api.py
 ```
 
 ## 📝 Requisitos
