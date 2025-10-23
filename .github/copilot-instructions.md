@@ -239,7 +239,45 @@ pytest tests/ -v
 **Model Type**: Random Forest Classifier  
 **Target**: 7 obesity categories  
 **Features**: 32 engineered features  
-**Dataset**: 2,087 samples  
+
+### **Dataset Information**
+
+**Source**: UCI Machine Learning Repository  
+**Name**: Estimation of Obesity Levels Based On Eating Habits and Physical Condition  
+**Link**: https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition
+
+**Dataset Characteristics**:
+- **Samples**: 2,087 individuals
+- **Features**: 17 attributes (16 predictors + 1 target)
+- **Target Classes**: 7 obesity levels
+  - Insufficient_Weight
+  - Normal_Weight
+  - Overweight_Level_I
+  - Overweight_Level_II
+  - Obesity_Type_I
+  - Obesity_Type_II
+  - Obesity_Type_III
+
+**Data Collection**:
+- Mexico, Peru, and Colombia
+- Ages: 14 to 61 years
+- 77% synthetic data generated using SMOTE technique
+- 23% collected via web platform survey
+
+**Attributes**:
+- Demographic: Gender, Age, Height, Weight
+- Eating habits: FCVC (frequency of vegetables), NCP (number of main meals), CAEC (food between meals), FAVC (high caloric food), CH2O (water consumption)
+- Physical condition: FAF (physical activity frequency), TUE (technology use time)
+- Lifestyle: CALC (alcohol consumption), SCC (calorie monitoring), SMOKE, MTRANS (transportation)
+- Family history: family_history_with_overweight
+
+**Citation**:
+```
+Palechor, F. & De La Hoz Manotas, A. (2019). 
+Dataset for estimation of obesity levels based on eating habits and physical condition. 
+UCI Machine Learning Repository. 
+https://doi.org/10.24432/C5H31Z
+```
 
 **Performance**:
 - **Accuracy**: 92.66%
