@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="#0D1117" stroke="#58A6FF" stroke-width="3"/>
+  
+  <!-- ML Brain (Left side) -->
+  <g id="ml-brain">
+    <!-- Neural network nodes -->
+    <circle cx="50" cy="80" r="8" fill="#58A6FF"/>
+    <circle cx="50" cy="100" r="8" fill="#58A6FF"/>
+    <circle cx="50" cy="120" r="8" fill="#58A6FF"/>
+    
+    <circle cx="80" cy="70" r="8" fill="#79C0FF"/>
+    <circle cx="80" cy="90" r="8" fill="#79C0FF"/>
+    <circle cx="80" cy="110" r="8" fill="#79C0FF"/>
+    <circle cx="80" cy="130" r="8" fill="#79C0FF"/>
+    
+    <!-- Connections -->
+    <line x1="50" y1="80" x2="80" y2="70" stroke="#58A6FF" stroke-width="2" opacity="0.6"/>
+    <line x1="50" y1="80" x2="80" y2="90" stroke="#58A6FF" stroke-width="2" opacity="0.6"/>
+    <line x1="50" y1="100" x2="80" y2="90" stroke="#58A6FF" stroke-width="2" opacity="0.6"/>
+    <line x1="50" y1="100" x2="80" y2="110" stroke="#58A6FF" stroke-width="2" opacity="0.6"/>
+    <line x1="50" y1="120" x2="80" y2="110" stroke="#58A6FF" stroke-width="2" opacity="0.6"/>
+    <line x1="50" y1="120" x2="80" y2="130" stroke="#58A6FF" stroke-width="2" opacity="0.6"/>
+  </g>
+  
+  <!-- Pipeline Arrow (Center) -->
+  <g id="pipeline">
+    <path d="M 90 100 L 110 100" stroke="#F97583" stroke-width="4" stroke-linecap="round"/>
+    <polygon points="110,100 105,95 105,105" fill="#F97583"/>
+  </g>
+  
+  <!-- Ops Gear (Right side) -->
+  <g id="ops-gear">
+    <!-- Gear -->
+    <circle cx="140" cy="100" r="20" fill="none" stroke="#85E89D" stroke-width="3"/>
+    <circle cx="140" cy="100" r="12" fill="#85E89D"/>
+    
+    <!-- Gear teeth -->
+    <rect x="138" y="75" width="4" height="10" fill="#85E89D"/>
+    <rect x="138" y="115" width="4" height="10" fill="#85E89D"/>
+    <rect x="155" y="98" width="10" height="4" fill="#85E89D"/>
+    <rect x="115" y="98" width="10" height="4" fill="#85E89D"/>
+    
+    <rect x="150" y="82" width="8" height="4" fill="#85E89D" transform="rotate(45 154 84)"/>
+    <rect x="150" y="114" width="8" height="4" fill="#85E89D" transform="rotate(-45 154 116)"/>
+    <rect x="122" y="82" width="8" height="4" fill="#85E89D" transform="rotate(-45 126 84)"/>
+    <rect x="122" y="114" width="8" height="4" fill="#85E89D" transform="rotate(45 126 116)"/>
+  </g>
+  
+  <!-- DVC Icon (Bottom Left) -->
+  <g id="dvc" transform="translate(35, 150)">
+    <rect x="0" y="0" width="20" height="20" rx="3" fill="#945DD6"/>
+    <path d="M 5 10 L 10 5 L 15 10 L 10 15 Z" fill="white" stroke="white" stroke-width="1.5"/>
+  </g>
+  
+  <!-- MLflow Icon (Bottom Center) -->
+  <g id="mlflow" transform="translate(90, 150)">
+    <rect x="0" y="0" width="20" height="20" rx="3" fill="#0194E2"/>
+    <text x="10" y="15" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">M</text>
+  </g>
+  
+  <!-- FastAPI Icon (Bottom Right) -->
+  <g id="fastapi" transform="translate(145, 150)">
+    <rect x="0" y="0" width="20" height="20" rx="3" fill="#009688"/>
+    <path d="M 6 14 L 10 6 L 14 14 Z" fill="white"/>
+    <rect x="9" y="10" width="2" height="6" fill="#009688"/>
+  </g>
+  
+  <!-- Top Labels -->
+  <text x="100" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#58A6FF" text-anchor="middle">MLOps</text>
+  <text x="100" y="45" font-family="Arial, sans-serif" font-size="10" fill="#8B949E" text-anchor="middle">Pipeline Reproducible</text>
+</svg>

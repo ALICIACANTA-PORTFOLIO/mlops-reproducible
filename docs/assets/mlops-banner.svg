@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0D1117;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#161B22;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0D1117;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#58A6FF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#79C0FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#58A6FF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="300" fill="url(#bgGrad)"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#21262D" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="300" fill="url(#grid)" opacity="0.3"/>
+  
+  <!-- Left side - Pipeline visualization -->
+  <g transform="translate(100, 150)">
+    <!-- Data -->
+    <circle cx="0" cy="0" r="25" fill="#945DD6" opacity="0.2"/>
+    <circle cx="0" cy="0" r="20" fill="#945DD6"/>
+    <text x="0" y="50" font-family="monospace" font-size="12" fill="#8B949E" text-anchor="middle">Data</text>
+    
+    <!-- Arrow 1 -->
+    <path d="M 25 0 L 75 0" stroke="#58A6FF" stroke-width="3" marker-end="url(#arrowblue)"/>
+    
+    <!-- Transform -->
+    <rect x="80" y="-20" width="40" height="40" rx="5" fill="#0194E2" opacity="0.2"/>
+    <rect x="85" y="-15" width="30" height="30" rx="3" fill="#0194E2"/>
+    <text x="100" y="50" font-family="monospace" font-size="12" fill="#8B949E" text-anchor="middle">Transform</text>
+    
+    <!-- Arrow 2 -->
+    <path d="M 125 0 L 175 0" stroke="#58A6FF" stroke-width="3" marker-end="url(#arrowblue)"/>
+    
+    <!-- Model -->
+    <polygon points="200,-20 220,0 200,20 180,0" fill="#F97583" opacity="0.2"/>
+    <polygon points="200,-15 215,0 200,15 185,0" fill="#F97583"/>
+    <text x="200" y="50" font-family="monospace" font-size="12" fill="#8B949E" text-anchor="middle">Model</text>
+    
+    <!-- Arrow 3 -->
+    <path d="M 225 0 L 275 0" stroke="#58A6FF" stroke-width="3" marker-end="url(#arrowblue)"/>
+    
+    <!-- Deploy -->
+    <circle cx="300" cy="0" r="25" fill="#85E89D" opacity="0.2"/>
+    <circle cx="300" cy="0" r="20" fill="#85E89D"/>
+    <path d="M 295 -5 L 300 0 L 295 5 M 300 0 L 305 -5 M 300 0 L 305 5" stroke="#0D1117" stroke-width="2" stroke-linecap="round"/>
+    <text x="300" y="50" font-family="monospace" font-size="12" fill="#8B949E" text-anchor="middle">Deploy</text>
+  </g>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowblue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#58A6FF" />
+    </marker>
+  </defs>
+  
+  <!-- Center - Main Title -->
+  <g transform="translate(600, 120)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="60" font-weight="bold" fill="url(#textGrad)" text-anchor="middle">MLOps</text>
+    <text x="0" y="35" font-family="monospace" font-size="18" fill="#8B949E" text-anchor="middle">Clasificación de Obesidad</text>
+    <text x="0" y="60" font-family="monospace" font-size="14" fill="#58A6FF" text-anchor="middle">Pipeline Reproducible • Model Registry • Production-Ready</text>
+  </g>
+  
+  <!-- Right side - Tech stack badges -->
+  <g transform="translate(900, 80)">
+    <!-- DVC -->
+    <rect x="0" y="0" width="80" height="28" rx="14" fill="#21262D"/>
+    <circle cx="16" cy="14" r="8" fill="#945DD6"/>
+    <text x="30" y="19" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#C9D1D9">DVC 3.30</text>
+    
+    <!-- MLflow -->
+    <rect x="90" y="0" width="100" height="28" rx="14" fill="#21262D"/>
+    <circle cx="106" cy="14" r="8" fill="#0194E2"/>
+    <text x="120" y="19" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#C9D1D9">MLflow 2.8</text>
+    
+    <!-- Python -->
+    <rect x="0" y="35" width="100" height="28" rx="14" fill="#21262D"/>
+    <circle cx="16" cy="49" r="8" fill="#FFA657"/>
+    <text x="30" y="54" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#C9D1D9">Python 3.10</text>
+    
+    <!-- FastAPI -->
+    <rect x="110" y="35" width="80" height="28" rx="14" fill="#21262D"/>
+    <circle cx="126" cy="49" r="8" fill="#009688"/>
+    <text x="140" y="54" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#C9D1D9">FastAPI</text>
+    
+    <!-- Accuracy badge -->
+    <rect x="40" y="75" width="110" height="35" rx="5" fill="#238636"/>
+    <text x="95" y="92" font-family="monospace" font-size="11" fill="#FFFFFF" text-anchor="middle">Accuracy</text>
+    <text x="95" y="107" font-family="monospace" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">92.66%</text>
+  </g>
+  
+  <!-- Bottom decorative elements -->
+  <g opacity="0.1">
+    <circle cx="100" cy="250" r="30" fill="#58A6FF"/>
+    <circle cx="200" cy="270" r="20" fill="#F97583"/>
+    <circle cx="1000" cy="250" r="25" fill="#85E89D"/>
+    <circle cx="1100" cy="270" r="15" fill="#945DD6"/>
+  </g>
+  
+  <!-- GitHub link hint -->
+  <text x="600" y="280" font-family="monospace" font-size="12" fill="#58A6FF" text-anchor="middle" opacity="0.6">
+    github.com/ALICIACANTA-PORTFOLIO/mlops-reproducible
+  </text>
+</svg>

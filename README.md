@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="docs/assets/mlops-banner.svg" alt="MLOps Pipeline Banner" width="100%"/>
+</div>
+
+---
+
 # Proyecto MLOps - Clasificación de Obesidad
 
 Un proyecto de Machine Learning Operations (MLOps) limpio, ordenado y funcional para la clasificación de obesidad. Implementa las mejores prácticas de MLOps con un enfoque profesional y reproducible.
