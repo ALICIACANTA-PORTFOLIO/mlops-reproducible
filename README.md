@@ -2,9 +2,53 @@
 
 Un proyecto de Machine Learning Operations (MLOps) limpio, ordenado y funcional para la clasificación de obesidad. Implementa las mejores prácticas de MLOps con un enfoque profesional y reproducible.
 
-#
-#
-#
+## 🌟 Características Destacadas
+
+✅ **MLflow Model Registry** - Versionado y lifecycle management de modelos  
+✅ **Model Signatures** - Validación automática de schemas input/output  
+✅ **DVC Integration** - Versionado de datos y reproducibilidad  
+✅ **FastAPI** - API REST production-ready  
+✅ **Pytest** - Suite completa de pruebas  
+✅ **Enterprise-Grade** - Automatización de transiciones de modelos (Staging → Production)
+
+---
+
+## 🏷️ Model Registry
+
+El proyecto implementa **MLflow Model Registry** con capacidades avanzadas:
+
+```bash
+# Listar modelos registrados
+python manage_registry.py list
+
+# Ver versiones y métricas
+python manage_registry.py versions obesity_classifier
+
+# Promover modelo a Production
+python manage_registry.py promote obesity_classifier 2 Production
+
+# Asignar alias "champion"
+python manage_registry.py alias obesity_classifier champion 2
+
+# Comparar versiones
+python manage_registry.py compare obesity_classifier 1 2
+
+# Encontrar mejor modelo
+python manage_registry.py best obesity_classifier --metric accuracy
+```
+
+**Características**:
+- 🔄 Registro automático durante entrenamiento
+- ✅ Model signatures para validación
+- 📊 Transiciones automáticas a Staging (accuracy >= 0.85)
+- 🏆 Sistema de aliases (champion, challenger)
+- 📈 Tags enriquecidos con metadata
+- 🔍 CLI completa para gestión
+
+**Documentación completa**: [docs/MODEL_REGISTRY.md](docs/MODEL_REGISTRY.md)
+
+---
+
 ## 🧪 Pruebas
 
 ```bash

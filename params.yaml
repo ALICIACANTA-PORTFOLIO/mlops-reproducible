@@ -54,7 +54,9 @@ model:
 mlflow:
   experiment_name: obesity_classification_v2
   tracking_uri: ./mlruns  # o puede ser una URI remota
-  model_name: obesity_classifier
+  registered_model_name: obesity_classifier  # Nombre para Model Registry
+  staging_threshold: 0.85  # Accuracy mínimo para promover a Staging
   tags:
     project: mlops-reproducible
     team: data-science
+    environment: development
