@@ -1,10 +1,20 @@
 # Documentación del Proyecto MLOps
 
+### 📋 **Guías de Proyecto y Portfolio**
+
+- **[PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** - Resumen ejecutivo del proyecto
+- **[PORTFOLIO_SHOWCASE.md](PORTFOLIO_SHOWCASE.md)** - Guía para presentar en portfolio
+- **[INSTALL_CONDA.md](INSTALL_CONDA.md)** - Instalación de Python 3.10 con Conda
+- **[PROJECT_STATUS.md](PROJECT_STATUS.md)** - Estado actual del proyecto
+- **[TESTING_REPORT.md](TESTING_REPORT.md)** - Reporte de pruebas de funcionalidad
+- **[VALIDATION_FINAL.md](VALIDATION_FINAL.md)** - Validación final del proyecto
+
 ### 🏗️ **Documentación Técnica**
 
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** - Arquitectura del sistema
 - **[TECHNICAL_GUIDE.md](TECHNICAL_GUIDE.md)** - Guía técnica detallada
 - **[DEPLOYMENT.md](DEPLOYMENT.md)** - Guía de despliegue
+- **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)** - Documentación de la API REST
 
 ### 📊 **Análisis y Resultados**
 

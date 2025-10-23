@@ -37,10 +37,9 @@ from sklearn.datasets import make_classification
 class DataValidationTests:
     """Tests de validación de datos inspirados en la referencia."""
     
-    def __init__(self, data_path: str = "data/processed/dataset_limpio.csv"):
-        self.data_path = data_path
-        self.data = None
-        self.target_column = "__target__"
+    data_path = "data/processed/dataset_limpio.csv"
+    data = None
+    target_column = "__target__"
     
     def load_data(self):
         """Cargar datos para testing."""
@@ -113,17 +112,16 @@ class DataValidationTests:
 class ModelQualityTests:
     """Tests de calidad de modelos inspirados en Testing_Model_Quality.ipynb."""
     
-    def __init__(self, model_path: str = "models/mlflow_model"):
-        self.model_path = model_path
-        self.model = None
-        self.test_data = None
-        self.predictions = None
-        
-        # Thresholds de calidad
-        self.min_accuracy = 0.80
-        self.min_f1_score = 0.75
-        self.max_training_time = 300  # segundos
-        self.consistency_tolerance = 0.05
+    model_path = "models/mlflow_model"
+    model = None
+    test_data = None
+    predictions = None
+    
+    # Thresholds de calidad
+    min_accuracy = 0.80
+    min_f1_score = 0.75
+    max_training_time = 300  # segundos
+    consistency_tolerance = 0.05
     
     def load_model(self):
         """Cargar modelo para testing."""
@@ -256,12 +254,11 @@ class ModelQualityTests:
 class PipelineIntegrationTests:
     """Tests de integración del pipeline completo."""
     
-    def __init__(self):
-        self.pipeline_config = {
-            'data_path': 'data/processed/dataset_limpio.csv',
-            'model_path': 'models/mlflow_model',
-            'output_path': 'reports/eval_metrics.json'
-        }
+    pipeline_config = {
+        'data_path': 'data/processed/dataset_limpio.csv',
+        'model_path': 'models/mlflow_model',
+        'output_path': 'reports/eval_metrics.json'
+    }
     
     def test_end_to_end_pipeline(self):
         """Test: Pipeline completo debe ejecutarse sin errores."""
@@ -322,12 +319,11 @@ class PipelineIntegrationTests:
 
 
 class PerformanceTests:
-    """Tests de performance y benchmarking."""
+    """Tests de performance y rendimiento."""
     
-    def __init__(self):
-        self.max_prediction_time = 5.0  # segundos
-        self.max_training_time = 300.0  # segundos
-        self.min_throughput = 100  # predicciones por segundo
+    max_prediction_time = 5.0  # segundos
+    max_training_time = 300.0  # segundos
+    min_throughput = 100  # predicciones por segundo
     
     def test_prediction_speed(self):
         """Test: Las predicciones deben ser suficientemente rápidas."""
