@@ -55,18 +55,65 @@ python manage_registry.py best obesity_classifier --metric accuracy
 
 ---
 
-## 🧪 Pruebas
+## 🧪 Pruebas y Validación
+
+### **Tests Automatizados**
 
 ```bash
-# Ejecutar todas las pruebas
+# Ejecutar todas las pruebas (3 tests)
 python -m pytest tests/ -v
 
 # Pruebas específicas
 python -m pytest tests/test_data_validation.py -v
 
-# Probar API (si está corriendo)
+# Verificar reproducibilidad
+python -m pytest tests/test_data_validation.py::test_reproducibility -v
+```
+
+**Tests incluidos**:
+- ✅ `test_data_validation` - Validación de datos y features
+- ✅ `test_reproducibility` - Reproducibilidad perfecta (0.0000 difference)
+- ✅ `test_advanced_framework` - Framework de validación avanzado
+
+### **Test de API**
+
+**⚠️ IMPORTANTE**: Debes tener la API corriendo ANTES de ejecutar los tests.
+
+#### **Paso 1: Iniciar API** (Terminal 1)
+```bash
+# Opción A: Usando el script (recomendado)
+python start_api.py --reload
+
+# Opción B: Usando uvicorn directamente
+uvicorn src.serving.api:app --reload --port 8000
+```
+
+**Salida esperada**:
+```
+🚀 Iniciando API de clasificación de obesidad...
+📍 Host: 127.0.0.1:8000
+📚 Documentación: http://127.0.0.1:8000/docs
+INFO:     Uvicorn running on http://127.0.0.1:8000
+INFO:     Application startup complete.
+```
+
+#### **Paso 2: Ejecutar Tests** (Terminal 2)
+```bash
+# Test completo de API (4 endpoints)
 python test_api.py
 ```
+
+**Salida esperada**:
+```
+🧪 Probando API de clasificación de obesidad
+✅ Health Check: OK
+✅ Single Prediction: OK
+✅ Batch Prediction: OK
+✅ Model Info: OK
+🎯 Tests exitosos: 4/4
+```
+
+---
 
 ## 📝 Requisitos
 
@@ -391,8 +438,13 @@ python manage_registry.py versions <model>   # Ver versiones y métricas
 
 #### **FastAPI** (Servir Modelo)
 ```bash
-uvicorn start_api:app --reload              # Iniciar API (localhost:8000)
-python test_api.py                          # Test API
+# Iniciar API en desarrollo
+python start_api.py --reload
+# O alternativamente:
+uvicorn src.serving.api:app --reload --port 8000
+
+# Test API (en otra terminal)
+python test_api.py
 ```
 
 #### **Pytest** (Testing)
@@ -435,7 +487,63 @@ ls mlruns/
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Guía de Inicio Rápido
+
+### **📋 Workflow Típico Completo**
+
+#### **1️⃣ Entrenar Modelo**
+```bash
+# Opción A: Pipeline DVC completo (recomendado)
+dvc repro
+
+# Opción B: Solo entrenamiento con MLflow
+python src/models/train.py
+
+# Output:
+# ✅ Model trained: Accuracy 0.9266, F1: 0.9251
+# ✅ Registered in MLflow Registry as version 1
+# ✅ Transitioned to Staging (accuracy >= 0.85)
+```
+
+#### **2️⃣ Verificar Registro de Modelo**
+```bash
+# Ver modelos registrados
+python manage_registry.py list
+
+# Ver versiones y métricas
+python manage_registry.py versions obesity_classifier
+```
+
+#### **3️⃣ Iniciar API** (Terminal 1 - Dejar corriendo)
+```bash
+python start_api.py --reload
+
+# Espera ver:
+# 🚀 Iniciando API...
+# INFO: Uvicorn running on http://127.0.0.1:8000
+# INFO: Application startup complete.
+```
+
+#### **4️⃣ Probar API** (Terminal 2)
+```bash
+# Test automatizado
+python test_api.py
+
+# O abrir en navegador:
+# http://localhost:8000/docs
+```
+
+#### **5️⃣ Ejecutar Tests**
+```bash
+# Tests completos
+pytest tests/ -v
+
+# ✅ 3/3 tests passing
+```
+
+---
+
+## 🚀 Quick Start (Opciones Detalladas)
 
 ### **Opción 1: Pipeline Completo con DVC** (Recomendado)
 
@@ -610,22 +718,55 @@ print(prediction)  # ['Normal_Weight']
 
 ## 🌐 API REST con FastAPI
 
-### **Iniciar servidor**
+### **Iniciar Servidor**
 
+**Opción 1: Usando el script** (Recomendado)
 ```bash
-# Desarrollo (auto-reload)
-uvicorn start_api:app --reload --port 8000
-
-# Producción
-uvicorn start_api:app --host 0.0.0.0 --port 8000
+python start_api.py --reload
 ```
 
-**Endpoints disponibles**: http://localhost:8000/docs (Swagger UI automática)
-
-### **Realizar predicciones**
-
+**Opción 2: Usando uvicorn directamente**
 ```bash
-# Predicción individual
+# Desarrollo (auto-reload)
+uvicorn src.serving.api:app --reload --port 8000
+
+# Producción
+uvicorn src.serving.api:app --host 0.0.0.0 --port 8000 --workers 4
+```
+
+**Verificación**:
+- 📚 Documentación Swagger: http://localhost:8000/docs
+- 📖 Documentación ReDoc: http://localhost:8000/redoc
+- 💚 Health Check: http://localhost:8000/
+
+---
+
+### **Endpoints Disponibles**
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| GET | `/` | Health check |
+| POST | `/predict` | Predicción individual |
+| POST | `/predict_batch` | Predicciones en lote |
+| GET | `/model_info` | Información del modelo |
+
+---
+
+### **Ejemplos de Uso**
+
+#### **1. Health Check**
+```bash
+curl http://localhost:8000/
+
+# Response:
+# {
+#   "status": "healthy",
+#   "message": "Obesity Classification API is running"
+# }
+```
+
+#### **2. Predicción Individual**
+```bash
 curl -X POST "http://localhost:8000/predict" \
   -H "Content-Type: application/json" \
   -d '{
@@ -633,10 +774,17 @@ curl -X POST "http://localhost:8000/predict" \
     "Height": 1.70,
     "Weight": 80,
     "FCVC": 2,
+    "NCP": 3,
     "CH2O": 2,
     "FAF": 3,
     "TUE": 1,
-    "CALC": 2,
+    "Gender": "Male",
+    "family_history_with_overweight": "yes",
+    "FAVC": "yes",
+    "CAEC": "Sometimes",
+    "SMOKE": "no",
+    "SCC": "no",
+    "CALC": "Sometimes",
     "MTRANS": "Public_Transportation"
   }'
 
@@ -649,6 +797,41 @@ curl -X POST "http://localhost:8000/predict" \
 #     "Obesity_Type_I": 0.03
 #   }
 # }
+```
+
+#### **3. Predicciones en Lote**
+```bash
+curl -X POST "http://localhost:8000/predict_batch" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "data": [
+      {"Age": 25, "Height": 1.70, "Weight": 80, ...},
+      {"Age": 30, "Height": 1.75, "Weight": 90, ...}
+    ]
+  }'
+```
+
+#### **4. Información del Modelo**
+```bash
+curl http://localhost:8000/model_info
+
+# Response:
+# {
+#   "model_name": "obesity_classifier",
+#   "model_type": "RandomForestClassifier",
+#   "version": "1.0.0",
+#   "accuracy": 0.9266,
+#   "features": 32
+# }
+```
+
+---
+
+### **Test Automatizado de API**
+
+```bash
+# Asegúrate de que la API está corriendo, luego:
+python test_api.py
 ```
 
 ### **Test automatizado de API**
@@ -664,6 +847,135 @@ python test_api.py
 # ✅ Model info passed
 # 4/4 tests successful
 ```
+
+---
+
+## 🔧 Troubleshooting (Problemas Comunes)
+
+### **❌ Error: "No se puede conectar a la API"**
+
+**Síntoma**:
+```
+❌ Health Check: No se puede conectar a la API
+   ¿Está corriendo la API en http://127.0.0.1:8000?
+```
+
+**Causa**: La API no está iniciada.
+
+**Solución**:
+```bash
+# En una terminal separada, inicia la API:
+python start_api.py --reload
+
+# Espera a ver: "INFO: Application startup complete."
+# Luego, en otra terminal, ejecuta:
+python test_api.py
+```
+
+---
+
+### **❌ Error: "Module 'start_api' has no attribute 'app'"**
+
+**Síntoma**:
+```
+ERROR: Attribute "app" not found in module "start_api"
+```
+
+**Causa**: Usando comando incorrecto.
+
+**Solución**:
+```bash
+# ❌ INCORRECTO:
+uvicorn start_api:app --reload
+
+# ✅ CORRECTO:
+python start_api.py --reload
+# O:
+uvicorn src.serving.api:app --reload
+```
+
+---
+
+### **❌ Error: "Modelo no encontrado"**
+
+**Síntoma**:
+```
+FileNotFoundError: models/obesity_model.pkl
+```
+
+**Causa**: No has entrenado el modelo.
+
+**Solución**:
+```bash
+# Entrenar modelo primero:
+python src/models/train.py
+# O ejecutar pipeline completo:
+dvc repro
+```
+
+---
+
+### **❌ Error: "ModuleNotFoundError: No module named 'mlflow'"**
+
+**Causa**: Dependencias no instaladas o entorno incorrecto.
+
+**Solución**:
+```bash
+# Activar entorno correcto:
+conda activate mlops-reproducible
+
+# Si no existe, instalar dependencias:
+pip install -r requirements.txt
+```
+
+---
+
+### **❌ Tests fallan con "difference not 0.0000"**
+
+**Causa**: Estado aleatorio no reproducible.
+
+**Solución**: Verifica que `params.yaml` tenga:
+```yaml
+random_forest:
+  random_state: 42  # Debe estar fijado
+```
+
+---
+
+### **💡 Verificar Estado General**
+
+```bash
+# 1. Verificar entorno Python
+conda info --envs
+python --version  # Debe ser 3.10.x
+
+# 2. Verificar dependencias
+pip list | grep -E "mlflow|dvc|fastapi|sklearn"
+
+# 3. Verificar modelo entrenado
+ls models/*.pkl
+
+# 4. Verificar API corriendo
+curl http://localhost:8000/
+
+# 5. Ver logs de MLflow
+mlflow ui  # http://localhost:5000
+```
+
+---
+
+## 📚 Documentación Adicional
+
+Para más información detallada:
+
+- 📖 **Model Registry**: [docs/MODEL_REGISTRY.md](docs/MODEL_REGISTRY.md)
+- 📊 **Implementación**: [docs/IMPLEMENTATION_SUMMARY.md](docs/IMPLEMENTATION_SUMMARY.md)
+- 🏗️ **Arquitectura**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- 🚀 **Deployment**: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
+- 🧪 **Testing**: [docs/TESTING_REPORT.md](docs/TESTING_REPORT.md)
+- 📚 **Libros ML**: [docs/1.4_books/README.md](docs/1.4_books/README.md)
+
+---
 
 🧪 Pruebas automáticas
 
