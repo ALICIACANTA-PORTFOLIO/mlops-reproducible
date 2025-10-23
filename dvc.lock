@@ -12,8 +12,8 @@ stages:
       size: 263646
     - path: params.yaml
       hash: md5
-      md5: 79d5e000042cdafef6dac7754a01e988
-      size: 1528
+      md5: c7a590f6098715994f49179d3a57e990
+      size: 1769
     - path: src/data/preprocess.py
       hash: md5
       md5: 2eee868eca924342f088cf0879f1ce57
@@ -37,8 +37,8 @@ stages:
       size: 274688
     - path: params.yaml
       hash: md5
-      md5: 79d5e000042cdafef6dac7754a01e988
-      size: 1528
+      md5: c7a590f6098715994f49179d3a57e990
+      size: 1769
     - path: src/data/make_features.py
       hash: md5
       md5: df6fb877692983a8af77abe5ab6a43a6
@@ -71,16 +71,16 @@ stages:
       size: 527214
     - path: params.yaml
       hash: md5
-      md5: 79d5e000042cdafef6dac7754a01e988
-      size: 1528
+      md5: c7a590f6098715994f49179d3a57e990
+      size: 1769
     - path: src/models/train.py
       hash: md5
-      md5: e1a6fbf05792c3c1bbf6d04f028923c2
-      size: 5696
+      md5: 4c8db3f7f10830c92fca6e682b9cce93
+      size: 11324
     outs:
     - path: models/mlflow_model
       hash: md5
-      md5: 6857ff7ce513dac220616baf83ac2eda.dir
+      md5: 8faf4d7b2673a32f845ed4b6dc2f9eda.dir
       size: 16035239
       nfiles: 5
     - path: reports/figures/confusion_matrix.png
@@ -103,7 +103,7 @@ stages:
       size: 527214
     - path: models/mlflow_model
       hash: md5
-      md5: 6857ff7ce513dac220616baf83ac2eda.dir
+      md5: 8faf4d7b2673a32f845ed4b6dc2f9eda.dir
       size: 16035239
       nfiles: 5
     - path: src/models/evaluate.py

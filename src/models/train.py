@@ -240,16 +240,119 @@ def main(data_path, params_path, model_dir, metrics_path, fig_cm_path):
         signature = infer_signature(Xtr, pred)
         input_example = Xtr.iloc[:1] if hasattr(Xtr, 'iloc') else Xtr[:1]
         
-        mlflow.sklearn.log_model(
+        # Nombre del modelo registrado
+        registered_model_name = mlflow_config.get("registered_model_name", "obesity_classifier")
+        
+        # Log model con registro automático
+        model_info = mlflow.sklearn.log_model(
             model, 
-            "model",  # usar 'name' en lugar de 'artifact_path'
+            "model",
             signature=signature,
-            input_example=input_example
+            input_example=input_example,
+            registered_model_name=registered_model_name
         )
         
         print(f"✅ Model logged to MLflow successfully!")
         print(f"🔗 Run ID: {mlflow.active_run().info.run_id}")
         print(f"📊 Experiment: {mlflow.get_experiment(mlflow.active_run().info.experiment_id).name}")
+        
+        # Model Registry: Gestión de versiones y aliases
+        try:
+            from mlflow.tracking import MlflowClient
+            client = MlflowClient()
+            
+            # Obtener la última versión del modelo registrado
+            # Buscar por nombre del modelo y run_id
+            versions = client.search_model_versions(
+                f"name='{registered_model_name}' and run_id='{mlflow.active_run().info.run_id}'"
+            )
+            
+            if versions:
+                model_version = versions[0].version
+                
+                print(f"\n🏷️  Model Registry Operations:")
+                print(f"   Model Name: {registered_model_name}")
+                print(f"   Version: {model_version}")
+                
+                # Agregar descripción al modelo
+                client.update_model_version(
+                    name=registered_model_name,
+                    version=model_version,
+                    description=f"RandomForest model trained on {len(df)} samples. "
+                                f"Accuracy: {acc:.4f}, F1: {f1m:.4f}. "
+                                f"Features: {len(X.columns)}. "
+                                f"Run ID: {mlflow.active_run().info.run_id}"
+                )
+                
+                # Transición automática a Staging si el modelo es bueno
+                accuracy_threshold = mlflow_config.get("staging_threshold", 0.85)
+                if acc >= accuracy_threshold:
+                    client.transition_model_version_stage(
+                        name=registered_model_name,
+                        version=model_version,
+                        stage="Staging",
+                        archive_existing_versions=False
+                    )
+                    print(f"   ✅ Transitioned to STAGING (accuracy {acc:.4f} >= {accuracy_threshold})")
+                    
+                    # Agregar alias si es el mejor modelo hasta ahora
+                    try:
+                        # Obtener todas las versiones en Staging o Production
+                        all_versions = client.search_model_versions(
+                            f"name='{registered_model_name}'"
+                        )
+                        
+                        # Filtrar por stage y obtener métricas
+                        best_accuracy = 0.0
+                        for v in all_versions:
+                            if v.current_stage in ['Staging', 'Production']:
+                                try:
+                                    run = client.get_run(v.run_id)
+                                    v_acc = run.data.metrics.get('accuracy', 0.0)
+                                    if v_acc > best_accuracy:
+                                        best_accuracy = v_acc
+                                except:
+                                    continue
+                        
+                        # Si este modelo es el mejor, asignar alias champion
+                        if acc >= best_accuracy:
+                            client.set_registered_model_alias(
+                                registered_model_name,
+                                "champion",
+                                model_version
+                            )
+                            print(f"   🏆 Alias 'champion' assigned (best accuracy: {acc:.4f})")
+                    except Exception as e:
+                        print(f"   ⚠️  Could not assign alias: {e}")
+                else:
+                    print(f"   ⚠️  Model below staging threshold (accuracy {acc:.4f} < {accuracy_threshold})")
+                    print(f"   📦 Model registered but not promoted to Staging")
+                
+                # Agregar tags adicionales al modelo registrado
+                client.set_model_version_tag(
+                    registered_model_name,
+                    model_version,
+                    "validation_status",
+                    "passed" if acc >= accuracy_threshold else "needs_review"
+                )
+                client.set_model_version_tag(
+                    registered_model_name,
+                    model_version,
+                    "model_type",
+                    P["model"]["type"]
+                )
+                client.set_model_version_tag(
+                    registered_model_name,
+                    model_version,
+                    "training_date",
+                    pd.Timestamp.now().strftime("%Y-%m-%d")
+                )
+                
+                print(f"   📋 Model version tags updated")
+                
+        except Exception as e:
+            print(f"⚠️  Model Registry operations failed: {e}")
+            print(f"   Model logged but not registered. Check MLflow configuration.")
 
 
 if __name__ == "__main__":
