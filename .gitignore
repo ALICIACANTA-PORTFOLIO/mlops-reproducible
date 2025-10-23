@@ -135,8 +135,12 @@ Thumbs.db
 *.tmp
 *.temp
 
-/docs/referencias
-/docs/1.4_books
+# Documentation folders with reference materials (large PDFs, books)
+/docs/referencias/
+/docs/1.*/
+# Keep only the README files for documentation
+!/docs/1.*/README.md
+
 # Legacy/Deprecated
 gradio_app*.py
 *gradio*.py
