@@ -1,5 +1,7 @@
 # Documentación del Proyecto MLOps
 
+## 🎯 **Documentación Esencial** (Empieza aquí)
+
 ### 📋 **Guías de Proyecto y Portfolio**
 
 - **[PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** - Resumen ejecutivo del proyecto
@@ -15,6 +17,7 @@
 - **[TECHNICAL_GUIDE.md](TECHNICAL_GUIDE.md)** - Guía técnica detallada
 - **[DEPLOYMENT.md](DEPLOYMENT.md)** - Guía de despliegue
 - **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)** - Documentación de la API REST
+- **[MODEL_REGISTRY.md](MODEL_REGISTRY.md)** ⭐ - Guía completa de MLflow Model Registry
 
 ### 📊 **Análisis y Resultados**
 
@@ -25,18 +28,35 @@
 
 - **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Guía de solución de problemas
 
-### 🎓 **Documentación de Aprendizaje**
+---
+
+## 📚 **Referencias Bibliográficas**
+
+### **Libros y Recursos Externos**
+
+- **[references/BOOKS.md](references/BOOKS.md)** ⭐ **NUEVO** - Referencias completas de los libros utilizados
+  - Machine Learning Engineering with MLflow (Manning, 2021)
+  - Machine Learning Design Patterns (O'Reilly, 2020)
+  - Mapeo detallado: Conceptos del libro → Implementación en el proyecto
+  - Code snippets adaptados con atribución
+  - Links de compra y recursos complementarios
+
+> **Nota Legal**: Este proyecto NO incluye copias de los libros. Solo referencias bibliográficas bajo fair use educativo. Para acceder a los libros completos, consulta los enlaces de compra en [BOOKS.md](references/BOOKS.md).
+
+---
+
+## 🎓 **Materiales de Aprendizaje** (Opcional)
+
+### **Tutoriales Paso a Paso**
 
 - **[1.1_Introduction/](1.1_Introduction/)** - Introducción y setup inicial
-- **[1.2_Data_Background/](1.2_Data_Background/)** - Versionado de datos
-- **[1.3_Modeling_pipeline/](1.3_Modeling_pipeline/)** - Pipeline de modelado
-- **[referencias/MLOps/](referencias/MLOps/)** - Referencias externas
+- **[1.2_Data_Background/](1.2_Data_Background/)** - Versionado de datos con DVC
+- **[1.3_Modeling_pipeline/](1.3_Modeling_pipeline/)** - Pipeline de modelado con MLflow
+- **[1.4_books/](1.4_books/)** - Análisis de libros especializados (ver [references/BOOKS.md](references/BOOKS.md))
 
-### 📚 **Biblioteca de Recursos MLOps**
+### **Referencias Externas**
 
-- **[1.4_books/](1.4_books/)** - Libros especializados en MLOps
-  - **Machine Learning Engineering with MLflow.pdf** - Guía completa de MLflow para ingeniería ML
-  - **Machine Learning Design Patterns.pdf** - Patrones de diseño para sistemas ML escalables
+- **[referencias/MLOps/](referencias/MLOps/)** - Artículos y recursos externos sobre MLOps
 
 ---
 
@@ -44,19 +64,20 @@
 
 ### Para **Principiantes en MLOps**:
 
-1. Leer **[README.md](../README.md)** (overview general)
+1. Leer **[../README.md](../README.md)** (overview general con storytelling)
 2. Estudiar **[MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md)** (conceptos y integración)
-3. Consultar **[1.4_books/README.md](1.4_books/README.md)** (recursos especializados)
-4. Revisar **[1.1_Introduction/Initial_Setup.md](1.1_Introduction/Initial_Setup.md)** (setup)
+3. Consultar **[references/BOOKS.md](references/BOOKS.md)** ⭐ (recursos bibliográficos con mapeo a implementación)
+4. Revisar **[1.1_Introduction/Initial_Setup.md](1.1_Introduction/Initial_Setup.md)** (setup inicial)
 5. Explorar **[TECHNICAL_GUIDE.md](TECHNICAL_GUIDE.md)** (detalles técnicos)
 
 ### Para **Desarrolladores Experimentados**:
 
 1. **[ARCHITECTURE.md](ARCHITECTURE.md)** (arquitectura del sistema)
-2. **[MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md)** (integración avanzada)
-3. **[1.4_books/README.md](1.4_books/README.md)** (patrones avanzados y MLflow engineering)
-4. **[DEPLOYMENT.md](DEPLOYMENT.md)** (despliegue)
-5. **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** (solución de problemas)
+2. **[MODEL_REGISTRY.md](MODEL_REGISTRY.md)** ⭐ (MLflow Model Registry completo)
+3. **[MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md)** (integración avanzada)
+4. **[references/BOOKS.md](references/BOOKS.md)** (patrones avanzados de los libros aplicados)
+5. **[DEPLOYMENT.md](DEPLOYMENT.md)** (despliegue en producción)
+6. **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** (solución de problemas)
 
 ### Para **Entender MLOps en la Práctica**:
 
@@ -67,24 +88,36 @@
    - Casos de uso reales
    - Comandos y configuración completa
 
+2. **[references/BOOKS.md](references/BOOKS.md)** ⭐ **NUEVO**
+   - Fundamentos teóricos (libros referenciados)
+   - Mapeo: Conceptos → Implementación práctica
+   - Code patterns adaptados
+   - Recursos complementarios
+
 ---
 
 ## 🔍 **Búsqueda Rápida por Tema**
 
-| Tema                           | Documento                                    | Sección                        |
-| ------------------------------ | -------------------------------------------- | ------------------------------ |
-| **Integración MLOps completa** | [MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md) | Todo el documento              |
-| **Configuración inicial**      | [README.md](../README.md)                    | 🚀 Instalación Rápida          |
-| **Uso del pipeline**           | [README.md](../README.md)                    | 📊 Uso del Sistema             |
-| **Arquitectura híbrida**       | [ARCHITECTURE.md](ARCHITECTURE.md)           | Arquitectura                   |
-| **DVC pipeline**               | [MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md) | DVC: El Git para Datos         |
-| **MLflow tracking**            | [MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md) | MLflow: El Laboratorio Digital |
-| **CI/CD setup**                | [MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md) | CI/CD: La Automatización       |
-| **Comandos prácticos**         | [MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md) | Comandos Prácticos             |
-| **Troubleshooting**            | [TROUBLESHOOTING.md](TROUBLESHOOTING.md)     | Todo el documento              |
-| **Deployment**                 | [DEPLOYMENT.md](DEPLOYMENT.md)               | Todo el documento              |
-| **Recursos MLflow avanzados**  | [1.4_books/README.md](1.4_books/README.md)   | MLflow Engineering Book        |
-| **Patrones de diseño ML**      | [1.4_books/README.md](1.4_books/README.md)   | ML Design Patterns Book        |
+| Tema | Documento | Sección |
+|------|-----------|---------|
+| **Integración MLOps completa** | [MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md) | Todo el documento |
+| **Model Registry completo** | [MODEL_REGISTRY.md](MODEL_REGISTRY.md) | Todo el documento ⭐ |
+| **Referencias bibliográficas** | [references/BOOKS.md](references/BOOKS.md) | Todo el documento ⭐ NUEVO |
+| **Configuración inicial** | [../README.md](../README.md) | 🚀 Instalación Rápida |
+| **Uso del pipeline** | [../README.md](../README.md) | 📊 Uso del Sistema |
+| **Arquitectura híbrida** | [ARCHITECTURE.md](ARCHITECTURE.md) | Arquitectura |
+| **DVC pipeline** | [MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md) | DVC: El Git para Datos |
+| **MLflow tracking** | [MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md) | MLflow: El Laboratorio Digital |
+| **Model signatures** | [MODEL_REGISTRY.md](MODEL_REGISTRY.md) | Model Signatures |
+| **Staging & Production** | [MODEL_REGISTRY.md](MODEL_REGISTRY.md) | Stage Transitions |
+| **Model aliases** | [MODEL_REGISTRY.md](MODEL_REGISTRY.md) | Model Aliases |
+| **CI/CD setup** | [MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md) | CI/CD: La Automatización |
+| **Comandos prácticos** | [MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md) | Comandos Prácticos |
+| **Troubleshooting** | [TROUBLESHOOTING.md](TROUBLESHOOTING.md) | Todo el documento |
+| **Deployment** | [DEPLOYMENT.md](DEPLOYMENT.md) | Todo el documento |
+| **Conceptos de libros aplicados** | [references/BOOKS.md](references/BOOKS.md) | Mapeo Conceptos → Código |
+| **Patrones de diseño ML** | [references/BOOKS.md](references/BOOKS.md) | ML Design Patterns |
+| **MLflow avanzado** | [references/BOOKS.md](references/BOOKS.md) | MLflow Engineering |
 
 ---
 
@@ -93,12 +126,34 @@
 - ✅ **Configuración inicial** documentada
 - ✅ **Pipeline MLOps** explicado paso a paso
 - ✅ **Integración DVC + MLflow + CI/CD** detallada
+- ✅ **Model Registry completo** con signatures, aliases, staging
+- ✅ **Referencias bibliográficas** organizadas (BOOKS.md)
 - ✅ **Ejemplos prácticos** incluidos
 - ✅ **Comandos de uso** documentados
 - ✅ **Arquitectura** explicada
 - ✅ **Troubleshooting** disponible
-- ✅ **Referencias** organizadas
+- ✅ **Copyright compliance** verificado
 
 ---
 
-**💡 Tip**: Para entender completamente cómo funciona la integración MLOps en este proyecto, **comienza por [MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md)**. Es el documento más completo y práctico.
+## 💡 **Tips de Navegación**
+
+### **Si quieres entender la teoría**:
+→ Lee [references/BOOKS.md](references/BOOKS.md) para conocer los fundamentos de MLOps de los libros
+
+### **Si quieres ver la práctica**:
+→ Lee [MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md) para comandos y ejemplos reales
+
+### **Si quieres dominar el Model Registry**:
+→ Lee [MODEL_REGISTRY.md](MODEL_REGISTRY.md) para signatures, aliases, staging
+
+### **Si tienes problemas**:
+→ Lee [TROUBLESHOOTING.md](TROUBLESHOOTING.md) para soluciones comunes
+
+---
+
+**🎓 Consejo**: Para una comprensión completa, sigue este orden:
+1. **[../README.md](../README.md)** - Contexto general
+2. **[references/BOOKS.md](references/BOOKS.md)** - Fundamentos teóricos
+3. **[MODEL_REGISTRY.md](MODEL_REGISTRY.md)** - Registry avanzado
+4. **[MLOPS_INTEGRATION.md](MLOPS_INTEGRATION.md)** - Práctica completa

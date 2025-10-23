@@ -141,6 +141,17 @@ Thumbs.db
 # Keep only the README files for documentation
 !/docs/1.*/README.md
 
+# Copyright Protection - Exclude all PDF files
+# DO NOT commit copyrighted books, papers, or PDFs
+*.pdf
+**/*.pdf
+docs/**/*.pdf
+docs/1.4_books/*.pdf
+docs/references/*.pdf
+
+# Exception: Allow personal-generated PDFs in reports (if needed in future)
+# !reports/generated_*.pdf
+
 # Legacy/Deprecated
 gradio_app*.py
 *gradio*.py
